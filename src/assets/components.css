@@ -1,0 +1,90 @@
+/* Sidebar Header & Brand */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  height: 64px;
+}
+
+.menu-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-size: 20px;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.menu-toggle:hover { background: rgba(255,255,255,0.1); }
+
+.brand-name {
+  margin-left: 15px;
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--accent);
+}
+
+/* Menü Liste */
+.menu-list { list-style: none; padding: 8px; margin: 0; flex-grow: 1; }
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  gap: 20px;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-radius: 8px;
+  margin-bottom: 4px;
+  transition: 0.2s;
+}
+
+.menu-item i {
+  width: 24px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.menu-item.active { background: rgba(0, 212, 255, 0.1); color: var(--accent); }
+.menu-item:hover:not(.active) { background: rgba(255,255,255,0.05); }
+
+/* User Box Unten */
+.user-card-area { padding: 8px; margin-top: auto; border-top: 1px solid var(--border); }
+
+.user-box {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 12px;
+  border-radius: 8px;
+}
+
+.avatar {
+  width: 32px; height: 32px;
+  background: var(--accent);
+  color: var(--bg-dark);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold; flex-shrink: 0;
+}
+
+.user-details { display: flex; flex-direction: column; overflow: hidden; flex-grow: 1; }
+.user-name { font-size: 14px; font-weight: 500; white-space: nowrap; }
+.user-role { font-size: 11px; color: var(--text-muted); }
+
+.logout-btn {
+  background: transparent;
+  border: none;
+  color: var(--red);
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Mini Modus Anpassung */
+.mini .menu-item { justify-content: center; padding: 12px 0; }
+.mini .user-box { justify-content: center; }
