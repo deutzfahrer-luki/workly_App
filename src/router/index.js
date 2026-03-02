@@ -1,26 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
-import Layout from '../components/Layout.vue'
 import Dashboard from '../views/Dashboard.vue'
-import InvoiceTable from '../components/InvoiceTable.vue'
+
+// FIX: Ordnername 'layout' ist jetzt kleingeschrieben
+import Layout from '../components/layout/Layout.vue' 
+
+// FIX: Wir laden erst mal nur die Basis-Seiten ohne komplexe Features
+import Bilanz from '../views/Bilanz.vue'
+import AccountDetail from '../views/AccountDetail.vue'
+
+const routes = [
+  { path: '/login', component: Login },
+  {
+    path: '/',
+    component: Layout,
+    children: [
+      { path: '', component: Dashboard },
+      { path: 'bilanz', component: Bilanz },
+      { path: 'bilanz/konto/:code', component: AccountDetail }
+      // Rechnungen erst mal weglassen, um Fehler zu isolieren
+    ]
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [
-    { path: '/login', component: Login },
-    {
-      path: '/',
-      component: Layout,
-      children: [
-        { path: '', component: Dashboard },
-        { path: 'rechnungen', component: InvoiceTable }
-      ],
-      beforeEnter: (to, from, next) => {
-        if (!localStorage.getItem('workly_token')) next('/login')
-        else next()
-      }
-    }
-  ]
+  routes
 })
 
 export default router
