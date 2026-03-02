@@ -33,6 +33,13 @@
           </div>
           <span v-if="!isCollapsed">Bilanz / FiBu</span>
         </router-link>
+
+        <router-link to="/kalender" class="nav-item" active-class="active">
+          <div class="icon-box">
+            <i class="fa-solid fa-calendar-days"></i>
+          </div>
+          <span v-if="!isCollapsed">Kalender</span>
+        </router-link>
       </nav>
     </div>
 

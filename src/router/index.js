@@ -1,24 +1,52 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 import Dashboard from '../views/Dashboard.vue'
-
-// FIX: Ordnername 'layout' ist jetzt kleingeschrieben
 import Layout from '../components/layout/Layout.vue' 
-
-// FIX: Wir laden erst mal nur die Basis-Seiten ohne komplexe Features
 import Bilanz from '../views/Bilanz.vue'
 import AccountDetail from '../views/AccountDetail.vue'
+import InvoiceTable from '../features/invoices/components/InvoiceTable.vue'
+import Calendar from '../views/Calendar.vue'
 
 const routes = [
-  { path: '/login', component: Login },
+  { 
+    path: '/login', 
+    component: Login,
+    meta: { requiresAuth: false, title: 'Workly | Login' }
+  },
   {
     path: '/',
     component: Layout,
     children: [
-      { path: '', component: Dashboard },
-      { path: 'bilanz', component: Bilanz },
-      { path: 'bilanz/konto/:code', component: AccountDetail }
-      // Rechnungen erst mal weglassen, um Fehler zu isolieren
+      { 
+        path: '', 
+        name: 'Dashboard', 
+        component: Dashboard,
+        meta: { requiresAuth: true, title: 'Workly | Zentrale' }
+      },
+      { 
+        path: 'rechnungen', 
+        name: 'Rechnungen', 
+        component: InvoiceTable, // JETZT AKTIVIERT
+        meta: { requiresAuth: true, title: 'Workly | Rechnungen' }
+      },
+      { 
+        path: 'bilanz', 
+        name: 'Bilanz', 
+        component: Bilanz,
+        meta: { requiresAuth: true, title: 'Workly | Bilanz' }
+      },
+      { 
+        path: 'bilanz/konto/:code', 
+        name: 'AccountDetail', 
+        component: AccountDetail,
+        meta: { requiresAuth: true, title: 'Workly | Konto-Details' }
+      },
+      { 
+        path: 'kalender', 
+        name: 'Calendar', 
+        component: Calendar,
+        meta: { requiresAuth: true, title: 'Workly | Kalender' }
+      }
     ]
   }
 ]
@@ -26,6 +54,23 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+// Authentifizierungs-Guard & Titel-Manager
+router.beforeEach((to) => {
+  const token = localStorage.getItem('workly_token')
+  
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+
+  if (to.meta.requiresAuth && !token) {
+    return '/login'
+  }
+  
+  if (to.path === '/login' && token) {
+    return '/'
+  }
 })
 
 export default router

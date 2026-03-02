@@ -66,7 +66,7 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-import BaseModal from './common/BaseModal.vue'
+import BaseModal from '../../../components/common/BaseModal.vue'
 
 const props = defineProps({ modelValue: Boolean })
 const emit = defineEmits(['update:modelValue', 'save'])

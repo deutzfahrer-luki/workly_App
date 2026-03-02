@@ -165,9 +165,11 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 // Korrigiere die Pfade in InvoiceTable.vue:
-import BaseTable from '../../../components/common/BaseTable.vue'   // Drei Ebenen hoch
-import BaseModal from '../../../components/common/BaseModal.vue'   // Drei Ebenen hoch
-import FilterModal from '../../../components/common/FilterModal.vue' // Drei Ebenen hoch
+import BaseTable from '../../../components/common/BaseTable.vue'
+import BaseModal from '../../../components/common/BaseModal.vue'
+import FilterModal from '../../../components/common/FilterModal.vue'
+
+// Auch die Composables liegen drei Ebenen höher
 import { useModal } from '../../../composables/useModal'
 import { usePdfViewer } from '../../../composables/usePdfViewer'
 import { useDataTable } from '../../../composables/useDataTable'

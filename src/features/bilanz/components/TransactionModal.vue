@@ -88,8 +88,8 @@
 
 <script setup>
 import { ref, watch, computed, onUnmounted } from 'vue'
-import BaseModal from './common/BaseModal.vue'
-import BaseSelect from './common/BaseSelect.vue'
+import BaseModal from '../../../components/common/BaseModal.vue'
+import BaseSelect from '../../../components/common/BaseSelect.vue'
 
 const props = defineProps(['modelValue', 'accounts'])
 const emit = defineEmits(['update:modelValue', 'save'])
